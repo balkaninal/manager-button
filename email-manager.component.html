@@ -1,0 +1,169 @@
+<div id="fixed-wrapper" class="shadow-md">
+  <button id="manager-toggle" class="bg-gradient-green" (click)="isVisible = !isVisible">Manager ({{emails && emails.length || 0}})</button>
+  <div class="card" [hidden]="isVisible">
+    
+    <div class="card-body">
+
+      <!-- Menu Content -->
+
+      <!-- empty email list -->
+      <div
+        id="no-email"
+        *ngIf="emails.length == 0"
+        class="d-flex flex-column align-items-center justify-content-center"
+      >
+        <i class="fa fa-envelope fa-4x text-gray" aria-hidden="true"></i>
+        <span>No Email Added</span>
+      </div>
+
+      <!-- Table Content -->
+      <div id="table-wrapper" class="border border-light" *ngIf="emails.length>0">
+        <table class="table table-striped">
+          <thead>
+            <th class="thead col-8">Email</th>
+            <th class="thead col-4 text-center">Actions</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let email of emails">
+              <td>{{ email }}</td>
+              <td
+                class="d-flex flex-row align-items-center justify-content-around"
+              >
+                <button
+                  style="
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                    
+                  "
+                >
+                  <i class="fa fa-copy text-dark" aria-hidden="true"></i>
+                </button>
+                <button
+                  style="
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                  "
+                >
+                  <i class="fa fa-share text-success" aria-hidden="true"></i>
+                </button>
+                <button
+                  (click)="removeMail(email)"
+                  style="
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                  "
+                >
+                  <i class="fa fa-times text-danger" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- table info -->
+      <p class="text-center mt-2">Total Email : {{emails && emails.length || 0}}</p>
+
+      <!-- Menu Buttons -->
+      <div id="buttons-wrapper" class="d-flex flex-row align-items-center justify-content-around">
+        <button class="btn btn-primary">Copy All as CSV</button>
+        <button class="btn btn-primary">Send all Email</button>
+      </div>
+    </div>
+  </div>
+ 
+</div>
+
+<!-- <div id="manager-wrapper" class="">
+  <div
+    id="manager-content-wrapper"
+    class="card mb-4"
+    style="min-height: 300px; min-width: 500px"
+    [hidden]="isVisible"
+  >
+    <div
+      class="card-header bg-gradient-dark d-flex flex-row justify-content-between"
+    >
+      <button (click)="removeList()">
+        <i class="fa fa-trash p-2" aria-hidden="true"></i>
+      </button>
+      <h5>Email Manager</h5>
+      <button><i class="fa fa-times p-2" aria-hidden="true"></i></button>
+    </div>
+    <div class="card-body">
+      <div
+        id="table-container"
+        class="container"
+        style="max-height: 150px; overflow: scroll; overflow-x: hidden"
+      >
+        <table class="table table-striped col-12">
+          <thead>
+            <th class="thead col-8">Email</th>
+            <th class="thead col-4 text-center">Actions</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let email of emails">
+              <td class="">{{ email }}</td>
+              <td
+                class="d-flex flex-row align-items-center justify-content-around"
+              >
+                <button
+                  style="
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                  "
+                >
+                  <i class="fa fa-copy text-dark" aria-hidden="true"></i>
+                </button>
+                <button
+                  style="
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                  "
+                >
+                  <i class="fa fa-share text-success" aria-hidden="true"></i>
+                </button>
+                <button
+                  (click)="removeMail(email)"
+                  style="
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                  "
+                >
+                  <i class="fa fa-times text-danger" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-center mt-2">
+        Total Mail : {{ emails.length ? emails.length : 0 }}
+      </p>
+    </div>
+    <div class="card-footer">
+      <div
+        id="button-wrapper"
+        class="d-flex flex-row align-items-center justify-content-around"
+      >
+        <div class="btn btn-primary">Export as CSV</div>
+        <div class="btn btn-primary">Send All an Email</div>
+      </div>
+    </div>
+  </div>
+  <div class="">
+    <button
+      id="manager-button"
+      class="bg-gradient-dark "
+      (click)="isVisible = !isVisible"
+    >
+      <i class="fa fa-envelope" aria-hidden="true"></i> <span class="text-xl">({{ emails.length }})</span>
+    </button>
+  </div>
+</div> -->
